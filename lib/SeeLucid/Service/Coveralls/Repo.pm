@@ -1,4 +1,4 @@
-package Project::Manager::Platform::Coveralls::Repo;
+package SeeLucid::Service::Coveralls::Repo;
 
 # TODO
 # - get the coverage for the project
@@ -180,8 +180,8 @@ TODO
 has github => ( is => 'lazy',);
 	sub _build_github {
 		my ($self) = @_;
-		require Project::Manager::Platform::GitHub::Repo;
-		Project::Manager::Platform::GitHub::Repo->new(
+		require SeeLucid::Service::GitHub::Repo;
+		SeeLucid::Service::GitHub::Repo->new(
 			namespace => $self->org_name,
 			name => $self->repo_name,
 		);

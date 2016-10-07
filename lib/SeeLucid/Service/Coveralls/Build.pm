@@ -1,4 +1,4 @@
-package Project::Manager::Platform::Coveralls::Build;
+package SeeLucid::Service::Coveralls::Build;
 
 use strict;
 use warnings;

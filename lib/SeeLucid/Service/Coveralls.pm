@@ -1,4 +1,4 @@
-package Project::Manager::Platform::Coveralls;
+package SeeLucid::Service::Coveralls;
 
 use Moo;
 
@@ -12,10 +12,10 @@ use HTML::FormatText;
 use HTML::TableExtract;
 use List::MoreUtils qw/zip/;
 use String::Strip qw(StripLTSpace);
-use Project::Manager::Platform::Coveralls::Build;
+use SeeLucid::Service::Coveralls::Build;
 
 use Types::Standard qw(Str InstanceOf);
-use Project::Manager::Platform::Coveralls::Repo;
+use SeeLucid::Service::Coveralls::Repo;
 
 has coveralls_domain => ( is => 'rw',
 	default => sub {URI->new('https://coveralls.io/')} );
@@ -94,7 +94,7 @@ has _base_tree => ( is => 'lazy', isa => InstanceOf["HTML::TreeBuilder::XPath"] 
 
 =method repos
 
-Returns an C<ArrayRef> of C<Project::Manager::Platform::Coveralls::Repo>
+Returns an C<ArrayRef> of C<SeeLucid::Service::Coveralls::Repo>
 instances for every repository that is available under the current user's
 Coveralls account.
 
@@ -109,13 +109,13 @@ sub repos {
 	my @repos = $coveralls_tree->findnodes( q|//div[@class='repoOverview']| );
 
 	my @repos_data = map {
-		my $r = Project::Manager::Platform::Coveralls::Repo->new(
+		my $r = SeeLucid::Service::Coveralls::Repo->new(
 				coveralls_domain => $coveralls_base,
 				repo_overview_node => $_
 			       );
 
 		# TODO remove the lazy attribute getter
-		my $attrs = 'Moo'->_constructor_maker_for('Project::Manager::Platform::Coveralls::Repo')->all_attribute_specs;
+		my $attrs = 'Moo'->_constructor_maker_for('SeeLucid::Service::Coveralls::Repo')->all_attribute_specs;
 		for my $attr (keys %$attrs) {
 			if( exists $attrs->{$attr}{lazy} ) {
 				$r->$attr();
@@ -129,7 +129,7 @@ sub repos {
 
 =methods build_history_for_repo
 
-  build_history_for_repo( Project::Manager::Platform::Coveralls::Repo $repo )
+  build_history_for_repo( SeeLucid::Service::Coveralls::Repo $repo )
 
 Visits the repository defined by C<$repo> to get the build history of that particular repository.
 
@@ -153,7 +153,7 @@ sub build_history_for_repo {
 	} @rows;
 
 	my @build_details = map {
-		Project::Manager::Platform::Coveralls::Build->new_from_table_headers(
+		SeeLucid::Service::Coveralls::Build->new_from_table_headers(
 			%$_
 		);
 	} @table_hashes;

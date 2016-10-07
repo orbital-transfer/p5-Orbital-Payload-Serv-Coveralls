@@ -3,14 +3,14 @@ use warnings;
 use Test::More;
 
 
-use Project::Manager::Platform::Coveralls;
-use Project::Manager::Platform::GitHub::User;
-use Project::Manager::Config;
-use Project::Manager::Platform::GitHub;
+use SeeLucid::Service::Coveralls;
+use SeeLucid::Service::GitHub::User;
+use SeeLucid::Config;
+use SeeLucid::Service::GitHub;
 
-my $cv = Project::Manager::Platform::Coveralls->new;
+my $cv = SeeLucid::Service::Coveralls->new;
 
-my %cred = Project::Manager::Platform::GitHub->_get_github_user_pass;
+my %cred = SeeLucid::Service::GitHub->_get_github_user_pass;
 
 #$cred{password} = ".";
 $cv->auth_to_github( \%cred );
