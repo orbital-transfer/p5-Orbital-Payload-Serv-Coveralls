@@ -3,14 +3,14 @@ use warnings;
 use Test::More;
 
 
-use SeeLucid::Service::Coveralls;
-use SeeLucid::Service::GitHub::User;
-use SeeLucid::Config;
-use SeeLucid::Service::GitHub;
+use Oberth::Service::Coveralls;
+use Oberth::Service::GitHub::User;
+use Oberth::Config;
+use Oberth::Service::GitHub;
 
-my $cv = SeeLucid::Service::Coveralls->new;
+my $cv = Oberth::Service::Coveralls->new;
 
-my %cred = SeeLucid::Service::GitHub->_get_github_user_pass;
+my %cred = Oberth::Service::GitHub->_get_github_user_pass;
 
 #$cred{password} = ".";
 $cv->auth_to_github( \%cred );

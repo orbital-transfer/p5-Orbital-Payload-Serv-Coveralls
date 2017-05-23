@@ -1,4 +1,4 @@
-package SeeLucid::Service::Coveralls::Repo;
+package Oberth::Service::Coveralls::Repo;
 
 # TODO
 # - get the coverage for the project
@@ -180,8 +180,8 @@ TODO
 has github => ( is => 'lazy',);
 	sub _build_github {
 		my ($self) = @_;
-		require SeeLucid::Service::GitHub::Repo;
-		SeeLucid::Service::GitHub::Repo->new(
+		require Oberth::Service::GitHub::Repo;
+		Oberth::Service::GitHub::Repo->new(
 			namespace => $self->org_name,
 			name => $self->repo_name,
 		);

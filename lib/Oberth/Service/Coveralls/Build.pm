@@ -1,4 +1,4 @@
-package SeeLucid::Service::Coveralls::Build;
+package Oberth::Service::Coveralls::Build;
 
 use strict;
 use warnings;
