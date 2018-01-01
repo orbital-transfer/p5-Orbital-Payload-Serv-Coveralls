@@ -1,4 +1,5 @@
 package Oberth::Service::Coveralls;
+# ABSTRACT: Interface to the Coveralls code coverage service
 
 use Moo;
 
@@ -18,7 +19,7 @@ use Types::Standard qw(Str InstanceOf);
 use Oberth::Service::Coveralls::Repo;
 
 has coveralls_domain => ( is => 'rw',
-	default => sub {URI->new('https://coveralls.io/')} );
+	default => sub {URI->new('https://coveralls.io')} );
 
 has ua => ( is => 'lazy', isa => InstanceOf["LWP::UserAgent"] );
 
@@ -31,7 +32,7 @@ sub _build_ua {
 
 sub get_index{
 	my ($self) = @_;
-	$self->ua->get( $self->coveralls_domain );
+	$self->ua->get( $self->coveralls_domain . '/' );
 }
 
 sub _find_github_auth_form {
@@ -78,7 +79,7 @@ sub auth_to_bitbucket {
 has _base_html_content => ( is => 'lazy', isa => Str );
 	sub _build__base_html_content {
 		my ($self) = @_;
-		return $self->ua->get($self->coveralls_domain)->decoded_content;
+		return $self->ua->get($self->coveralls_domain . '/' )->decoded_content;
 	}
 
 # Contains an HTML::Tree of _base_html_content() with XPath support.

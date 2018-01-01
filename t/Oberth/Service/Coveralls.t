@@ -5,7 +5,6 @@ use Test::More;
 
 use Oberth::Service::Coveralls;
 use Oberth::Service::GitHub::User;
-use Oberth::Config;
 use Oberth::Service::GitHub;
 
 my $cv = Oberth::Service::Coveralls->new;
