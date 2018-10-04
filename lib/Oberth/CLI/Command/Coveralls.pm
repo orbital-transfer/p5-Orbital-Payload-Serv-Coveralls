@@ -67,6 +67,8 @@ subcommand enable => method() {
 			repo => {
 				service => 'github',
 				name => $gh->namespace . "/" . $gh->name,
+				comment_on_pull_requests => JSON->true,
+				send_build_status => JSON->true,
 			},
 		}),
 	);
