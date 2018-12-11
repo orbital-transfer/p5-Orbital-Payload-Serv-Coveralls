@@ -1,4 +1,4 @@
-use Oberth::Common::Setup;
+use Oberth::Manoeuvre::Common::Setup;
 package Oberth::CLI::Command::Coveralls;
 # ABSTRACT: A command for Coveralls
 
@@ -6,8 +6,8 @@ use Moo;
 use CLI::Osprey;
 
 use JSON::MaybeXS;
-use Oberth::Service::Coveralls;
-use Oberth::Service::GitHub;
+use Oberth::Block::Service::Coveralls;
+use Oberth::Block::Service::GitHub;
 use List::AllUtils qw(first);
 
 has _coveralls => ( is => 'lazy' );
@@ -23,9 +23,9 @@ method _build_token() {
 
 
 method _build__coveralls() {
-	my $cv = Oberth::Service::Coveralls->new;
+	my $cv = Oberth::Block::Service::Coveralls->new;
 
-	my %cred = Oberth::Service::GitHub->_get_github_user_pass;
+	my %cred = Oberth::Block::Service::GitHub->_get_github_user_pass;
 
 	$cv->auth_to_github( \%cred );
 

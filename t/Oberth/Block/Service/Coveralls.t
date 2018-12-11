@@ -3,13 +3,13 @@ use warnings;
 use Test::More;
 
 
-use Oberth::Service::Coveralls;
-use Oberth::Service::GitHub::User;
-use Oberth::Service::GitHub;
+use Oberth::Block::Service::Coveralls;
+use Oberth::Block::Service::GitHub::User;
+use Oberth::Block::Service::GitHub;
 
-my $cv = Oberth::Service::Coveralls->new;
+my $cv = Oberth::Block::Service::Coveralls->new;
 
-my %cred = Oberth::Service::GitHub->_get_github_user_pass;
+my %cred = Oberth::Block::Service::GitHub->_get_github_user_pass;
 
 #$cred{password} = ".";
 $cv->auth_to_github( \%cred );

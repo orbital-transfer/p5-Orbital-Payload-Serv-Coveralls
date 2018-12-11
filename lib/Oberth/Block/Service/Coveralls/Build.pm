@@ -1,4 +1,4 @@
-package Oberth::Service::Coveralls::Build;
+package Oberth::Block::Service::Coveralls::Build;
 
 use strict;
 use warnings;
