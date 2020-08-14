@@ -1,13 +1,13 @@
-use Oberth::Manoeuvre::Common::Setup;
-package Oberth::CLI::Command::Coveralls;
+use Orbital::Transfer::Common::Setup;
+package Orbital::CLI::Command::Coveralls;
 # ABSTRACT: A command for Coveralls
 
 use Moo;
 use CLI::Osprey;
 
 use JSON::MaybeXS;
-use Oberth::Block::Service::Coveralls;
-use Oberth::Block::Service::GitHub;
+use Orbital::Payload::Service::Coveralls;
+use Orbital::Payload::Service::GitHub;
 use List::AllUtils qw(first);
 
 has _coveralls => ( is => 'lazy' );
@@ -15,7 +15,7 @@ has _coveralls => ( is => 'lazy' );
 has token => ( is => 'lazy' );
 
 method _build_token() {
-	my $token = `git config --global oberth.coveralls-token`;
+	my $token = `git config --global orbital.coveralls-token`;
 	chomp $token;
 
 	$token;
@@ -23,9 +23,9 @@ method _build_token() {
 
 
 method _build__coveralls() {
-	my $cv = Oberth::Block::Service::Coveralls->new;
+	my $cv = Orbital::Payload::Service::Coveralls->new;
 
-	my %cred = Oberth::Block::Service::GitHub->_get_github_user_pass;
+	my %cred = Orbital::Payload::Service::GitHub->_get_github_user_pass;
 
 	$cv->auth_to_github( \%cred );
 
@@ -77,6 +77,6 @@ subcommand enable => method() {
 	use DDP; p $response_json;
 };
 
-with qw(Oberth::CLI::Command::Role::GitHubRepos);
+with qw(Orbital::CLI::Command::Role::GitHubRepos);
 
 1;

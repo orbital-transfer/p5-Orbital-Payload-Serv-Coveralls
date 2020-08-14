@@ -1,4 +1,4 @@
-package Oberth::Block::Service::Coveralls::Build;
+package Orbital::Payload::Service::Coveralls::Build;
 
 use strict;
 use warnings;

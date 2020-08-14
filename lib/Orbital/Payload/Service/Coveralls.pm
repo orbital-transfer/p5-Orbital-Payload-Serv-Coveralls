@@ -1,4 +1,4 @@
-package Oberth::Block::Service::Coveralls;
+package Orbital::Payload::Service::Coveralls;
 # ABSTRACT: Interface to the Coveralls code coverage service
 
 use Moo;
@@ -13,10 +13,10 @@ use HTML::FormatText;
 use HTML::TableExtract;
 use List::MoreUtils qw/zip/;
 use String::Strip qw(StripLTSpace);
-use Oberth::Block::Service::Coveralls::Build;
+use Orbital::Payload::Service::Coveralls::Build;
 
 use Types::Standard qw(Str InstanceOf);
-use Oberth::Block::Service::Coveralls::Repo;
+use Orbital::Payload::Service::Coveralls::Repo;
 
 has coveralls_domain => ( is => 'rw',
 	default => sub {URI->new('https://coveralls.io')} );
@@ -95,7 +95,7 @@ has _base_tree => ( is => 'lazy', isa => InstanceOf["HTML::TreeBuilder::XPath"] 
 
 =method repos
 
-Returns an C<ArrayRef> of C<Oberth::Block::Service::Coveralls::Repo>
+Returns an C<ArrayRef> of C<Orbital::Payload::Service::Coveralls::Repo>
 instances for every repository that is available under the current user's
 Coveralls account.
 
@@ -110,13 +110,13 @@ sub repos {
 	my @repos = $coveralls_tree->findnodes( q|//div[@class='repoOverview']| );
 
 	my @repos_data = map {
-		my $r = Oberth::Block::Service::Coveralls::Repo->new(
+		my $r = Orbital::Payload::Service::Coveralls::Repo->new(
 				coveralls_domain => $coveralls_base,
 				repo_overview_node => $_
 			       );
 
 		# TODO remove the lazy attribute getter
-		my $attrs = 'Moo'->_constructor_maker_for('Oberth::Block::Service::Coveralls::Repo')->all_attribute_specs;
+		my $attrs = 'Moo'->_constructor_maker_for('Orbital::Payload::Service::Coveralls::Repo')->all_attribute_specs;
 		for my $attr (keys %$attrs) {
 			if( exists $attrs->{$attr}{lazy} ) {
 				$r->$attr();
@@ -130,7 +130,7 @@ sub repos {
 
 =methods build_history_for_repo
 
-  build_history_for_repo( Oberth::Block::Service::Coveralls::Repo $repo )
+  build_history_for_repo( Orbital::Payload::Service::Coveralls::Repo $repo )
 
 Visits the repository defined by C<$repo> to get the build history of that particular repository.
 
@@ -154,7 +154,7 @@ sub build_history_for_repo {
 	} @rows;
 
 	my @build_details = map {
-		Oberth::Block::Service::Coveralls::Build->new_from_table_headers(
+		Orbital::Payload::Service::Coveralls::Build->new_from_table_headers(
 			%$_
 		);
 	} @table_hashes;
