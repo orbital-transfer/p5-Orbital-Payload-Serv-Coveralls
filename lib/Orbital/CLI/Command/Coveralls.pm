@@ -6,8 +6,8 @@ use Moo;
 use CLI::Osprey;
 
 use JSON::MaybeXS;
-use Orbital::Payload::Service::Coveralls;
-use Orbital::Payload::Service::GitHub;
+use Orbital::Payload::Serv::Coveralls;
+use Orbital::Payload::Serv::GitHub;
 use List::AllUtils qw(first);
 
 has _coveralls => ( is => 'lazy' );
@@ -23,9 +23,9 @@ method _build_token() {
 
 
 method _build__coveralls() {
-	my $cv = Orbital::Payload::Service::Coveralls->new;
+	my $cv = Orbital::Payload::Serv::Coveralls->new;
 
-	my %cred = Orbital::Payload::Service::GitHub->_get_github_user_pass;
+	my %cred = Orbital::Payload::Serv::GitHub->_get_github_user_pass;
 
 	$cv->auth_to_github( \%cred );
 

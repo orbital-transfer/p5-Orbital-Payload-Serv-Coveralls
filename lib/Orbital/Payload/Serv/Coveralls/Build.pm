@@ -1,4 +1,4 @@
-package Orbital::Payload::Service::Coveralls::Build;
+package Orbital::Payload::Serv::Coveralls::Build;
 
 use strict;
 use warnings;

@@ -3,13 +3,13 @@ use warnings;
 use Test::More;
 
 
-use Orbital::Payload::Service::Coveralls;
-use Orbital::Payload::Service::GitHub::User;
-use Orbital::Payload::Service::GitHub;
+use Orbital::Payload::Serv::Coveralls;
+use Orbital::Payload::Serv::GitHub::User;
+use Orbital::Payload::Serv::GitHub;
 
-my $cv = Orbital::Payload::Service::Coveralls->new;
+my $cv = Orbital::Payload::Serv::Coveralls->new;
 
-my %cred = Orbital::Payload::Service::GitHub->_get_github_user_pass;
+my %cred = Orbital::Payload::Serv::GitHub->_get_github_user_pass;
 
 #$cred{password} = ".";
 $cv->auth_to_github( \%cred );

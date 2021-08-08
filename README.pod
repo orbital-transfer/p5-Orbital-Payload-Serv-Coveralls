@@ -4,7 +4,7 @@
 
 =head1 NAME
 
-Orbital::Payload::Service::Coveralls - Interface to the Coveralls code coverage service
+Orbital::Payload::Serv::Coveralls - Interface to the Coveralls code coverage service
 
 =head1 VERSION
 
@@ -14,7 +14,7 @@ version 0.001
 
 =head2 repos
 
-Returns an C<ArrayRef> of C<Orbital::Payload::Service::Coveralls::Repo>
+Returns an C<ArrayRef> of C<Orbital::Payload::Serv::Coveralls::Repo>
 instances for every repository that is available under the current user's
 Coveralls account.
 
@@ -22,7 +22,7 @@ Requires a login.
 
 =methods build_history_for_repo
 
-  build_history_for_repo( Orbital::Payload::Service::Coveralls::Repo $repo )
+  build_history_for_repo( Orbital::Payload::Serv::Coveralls::Repo $repo )
 
 Visits the repository defined by C<$repo> to get the build history of that particular repository.
 

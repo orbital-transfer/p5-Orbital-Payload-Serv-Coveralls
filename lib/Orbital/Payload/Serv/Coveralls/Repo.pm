@@ -1,4 +1,4 @@
-package Orbital::Payload::Service::Coveralls::Repo;
+package Orbital::Payload::Serv::Coveralls::Repo;
 
 # TODO
 # - get the coverage for the project
@@ -180,8 +180,8 @@ TODO
 has github => ( is => 'lazy',);
 	sub _build_github {
 		my ($self) = @_;
-		require Orbital::Payload::Service::GitHub::Repo;
-		Orbital::Payload::Service::GitHub::Repo->new(
+		require Orbital::Payload::Serv::GitHub::Repo;
+		Orbital::Payload::Serv::GitHub::Repo->new(
 			namespace => $self->org_name,
 			name => $self->repo_name,
 		);
