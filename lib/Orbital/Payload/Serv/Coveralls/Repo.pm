@@ -120,7 +120,7 @@ has last_build => (
 		my ($self) = @_;
 		  ($self->_node_build_number)
 		? ({
-				number => ( $self->_node_build_number->as_trimmed_text =~ /Build #(?<build>\d+)/ )[0] ,
+				number => ( $self->_node_build_number->as_trimmed_text =~ /Build #(\d+)/ )[0] ,
 				link => URI->new_abs($self->_node_build_number->attr('href'), $self->coveralls_domain),
 				details => do {
 					my $bd_text = $self->_node_build_details->as_trimmed_text;
