@@ -2,6 +2,7 @@ use Orbital::Transfer::Common::Setup;
 package Orbital::CLI::Command::Coveralls;
 # ABSTRACT: A command for Coveralls
 
+use Orbital::Transfer::Common::Setup;
 use Moo;
 use CLI::Osprey;
 
