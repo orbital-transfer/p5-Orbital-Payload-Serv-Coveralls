@@ -8,7 +8,7 @@ use strict;
 use warnings;
 
 use Moo;
-use MooX::HandlesVia;
+use Sub::HandlesVia;
 use String::Strip qw(StripLTSpace);
 
 has coveralls_domain => ( is => 'ro', required => 1 );
