@@ -128,7 +128,7 @@ sub repos {
 	\@repos_data;
 }
 
-=methods build_history_for_repo
+=method build_history_for_repo
 
   build_history_for_repo( Orbital::Payload::Serv::Coveralls::Repo $repo )
 

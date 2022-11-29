@@ -20,7 +20,7 @@ Coveralls account.
 
 Requires a login.
 
-=methods build_history_for_repo
+=head2 build_history_for_repo
 
   build_history_for_repo( Orbital::Payload::Serv::Coveralls::Repo $repo )
 
