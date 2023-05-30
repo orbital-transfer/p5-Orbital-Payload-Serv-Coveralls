@@ -4,7 +4,7 @@ package Orbital::CLI::Command::Coveralls;
 
 use Orbital::Transfer::Common::Setup;
 use Moo;
-use CLI::Osprey;
+use CLI::Osprey on_demand => 1;
 
 use JSON::MaybeXS;
 use Orbital::Payload::Serv::Coveralls;
