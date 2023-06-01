@@ -9,7 +9,7 @@ use CLI::Osprey on_demand => 1;
 use JSON::MaybeXS;
 use Orbital::Payload::Serv::Coveralls;
 use Orbital::Payload::Serv::GitHub;
-use List::AllUtils qw(first);
+use List::Util::MaybeXS qw(first);
 
 has _coveralls => ( is => 'lazy' );
 
